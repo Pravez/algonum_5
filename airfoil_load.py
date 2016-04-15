@@ -29,6 +29,4 @@ def load_foil(file):
     ey = np.array(map(lambda t: float(t[1]),extra))
     ix = np.array(map(lambda t: float(t[0]),intra))
     iy = np.array(map(lambda t: float(t[1]),intra))
-    return(ex,ey,ix,iy)
-
-(ex,ey,ix,iy) = load_foil("boe103.dat")
+    return (ex,ey,ix,iy)
