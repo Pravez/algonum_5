@@ -1,5 +1,5 @@
 def rect_r(f, a, b, n):
-    h = (b - a)/n
+    h = (b - a)/float(n)
     S = 0
     for k in range(1, n+1):
         S += f(a + k*h)
@@ -7,7 +7,7 @@ def rect_r(f, a, b, n):
 
 
 def rect_l(f, a, b, n):
-    h = (b - a)/n
+    h = (b - a)/float(n)
     S = 0
     for k in range(0, n):
         S += f(a + k*h)
@@ -15,19 +15,25 @@ def rect_l(f, a, b, n):
 
 
 def midpoint(f, a, b, n):
-    h = (b - a)/n
+    h = (b - a)/float(n)
     S = 0
     for k in range(0, n+1):
-        S += f(a + k*h + h/2)
+        S += f(a + k*h + h/2.0)
     return h*S
 
 
 def trapezoidal(f, a, b, n):
-    h = (b - a)/n
+    h = (b - a)/float(n)
     S = 0
-    m = (f(a) + f(b))/2
+    m = (f(a) + f(b))/2.0
     for k in range(1, n):
         S += f(a + k*h)
     return h*(m + S)
 
+# def f(x):
+#     return x
 
+# print(rect_r(f, 0, 1, 10))
+# print(rect_l(f, 0, 1, 10))
+# print(midpoint(f, 0, 1, 10))
+# print(trapezoidal(f, 0, 1, 10))
