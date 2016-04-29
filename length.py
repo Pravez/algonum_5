@@ -1,5 +1,6 @@
 from airfoil_load import *
-import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.pyplot as mp
 
 #---------------#
 #    LENGTH     #
@@ -13,3 +14,5 @@ import matplotlib.pyplot as plt
 def length(I, n, df, x, y):
     length = lambda x: np.sqrt(1 + (df(x)*df(x)))
     return I(x, y, n, length) 
+
+
