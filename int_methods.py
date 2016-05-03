@@ -30,6 +30,17 @@ def trapezoidal(f, a, b, n):
         S += f(a + k*h)
     return h*(m + S)
 
+
+def simpson(f, a, b, n):
+    h = (b - a)/float(n)
+    S = 0
+    a0 = a
+    for k in range(n):
+        S += (h/6.)*(f(a0) + 4*f((2*a0+h)/2.) + f(a0 + h))
+        a0 += h
+    return S
+
+
 # def f(x):
 #     return x
 
@@ -37,3 +48,6 @@ def trapezoidal(f, a, b, n):
 # print(rect_l(f, 0, 1, 10))
 # print(midpoint(f, 0, 1, 10))
 # print(trapezoidal(f, 0, 1, 10))
+# print(simpson(f, 0, 1, 10))
+
+### La valeur exacte est 0.5 ###
