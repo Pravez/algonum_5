@@ -1,7 +1,7 @@
 from airfoil_load import *
 import matplotlib.pyplot as plt
 
-(ex,ey,ix,iy) = load_foil('DU84132V.DAT')
+(ex,ey,ix,iy) = load_foil('HOR20.DAT')
 
 def spline(x, y, yp1, ypn, max):
 
@@ -38,7 +38,7 @@ def spline(x, y, yp1, ypn, max):
     return y2
 
 
-def splint(xa, ya, y2a, n, x, y):
+def splint(xa, ya, y2a, n, x):
     klo = 1
     khi = n
     while khi-klo > 1 :
@@ -56,8 +56,41 @@ def splint(xa, ya, y2a, n, x, y):
     y = a * ya[klo] + b * ya[khi] + ((a * a * a - a) * y2a[klo] + (b * b * b - b) * y2a[khi]) * (h * h) / 6.0
     return y
 
+#plt.plot(ix, iy)
+#for i in range(ix.size):
+#    plt.scatter(ix[i], iy[i])
+#plt.show()
 
-plt.plot(ix, iy)
-for i in range(ix.size):
-    plt.scatter(ix[i], iy[i])
+values = []
+current = 0
+i=0
+while(current < ix[ix.size-1] and i < ix.size):
+    current = 1e-3*i
+    values.append(current)
+    i+=1
+
+print(values)
+print(ix)
+
+xa = []
+ya = []
+for i in range (ix.size):
+    if(iy[i]> 1e-30):
+        ya.append(iy[i])
+        xa.append(ix[i])
+
+
+yp1 = (ya[1] - ya[0])/(xa[1] - xa[0])
+ypn = (ya[len(ya)-1] - ya[len(ya)-2]) / (xa[len(xa)-1] - xa[len(xa)-2])
+y2a = spline(xa, ya, yp1, ypn, 1e-30)
+
+
+d1 = []
+for i in range(len(values)):
+    d1.append(splint(xa, ya, y2a, len(xa)-1, values[i]))
+
+plt.plot(values, d1)
+plt.plot(xa, ya, color='red')
 plt.show()
+
+#il faut calculer les derivees premieres aux deux premiers points et aux deux derniers
