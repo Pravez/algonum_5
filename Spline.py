@@ -1,7 +1,5 @@
-from airfoil_load import *
+import numpy as np
 import matplotlib.pyplot as plt
-
-(ex,ey,ix,iy) = load_foil('data/goe144.dat')
 
 def spline(x, y, yp1, ypn, max):
 
@@ -75,10 +73,3 @@ def compute_smthing_dos(xa, ya, npoints):
         final_points_y.append(func(value*i))
 
     return [final_points_x, final_points_y]
-
-
-extrados = compute_smthing_dos(ex, ey, 10)
-intrados = compute_smthing_dos(ix, iy, 10)
-plt.plot(extrados[0], extrados[1])
-plt.plot(intrados[0], intrados[1])
-plt.show()
