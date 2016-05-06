@@ -54,24 +54,25 @@ def splint(xa, ya, y2a, n, x):
     y = a * ya[klo] + b * ya[khi] + ((a * a * a - a) * y2a[klo] + (b * b * b - b) * y2a[khi]) * (h * h) / 6.0
     return y
 
+def get_func_splint(xa, ya, yp1 = 1e30, ypn = 1e30, max = 0.99e30):
+    n = len(xa)
+    y2a = spline(xa, ya, yp1, ypn, max)
+
+    return (lambda x: splint(xa, ya, y2a, n, x))
 
 def compute_smthing_dos(xa, ya, npoints):
     n = len(xa)
 
     value = (xa[n-1] / n) / npoints
     total_points = npoints * n + 1
-
-    #first_d = (ya[1] - ya[0])/(xa[1] - xa[0])
-    #last_d = (ya[n-1] - ya[n-2]) / (xa[n-1] - xa[n-2])
-
-    y2a = spline(xa, ya, 1e30, 1e30, 0.99e30)
+    func = get_func_splint(xa, ya)
 
     final_points_y = []
     final_points_x = []
 
     for i in range(0, total_points):
         final_points_x.append(value*i)
-        final_points_y.append(splint(xa, ya, y2a, n, value*i))
+        final_points_y.append(func(value*i))
 
     return [final_points_x, final_points_y]
 
