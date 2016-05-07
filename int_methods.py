@@ -107,8 +107,15 @@ def plot_methods(f, x, y, n_min, n_max):
         val_midpoint.append(midpoint(xi, yi))
         val_trapezoidal.append(trapezoidal(xi, yi))
         val_simpson.append(simpson(xi, yi))
-    print(abscissas)
-    plt.plot(abscissas, val_rect_r, 'r', abscissas, val_rect_l, 'b', abscissas, val_midpoint, 'g', abscissas, val_trapezoidal, 'y', abscissas, val_simpson, 'k')
+
+    r_r, = plt.plot(abscissas, val_rect_r, 'r', label = 'Rectangles right')
+    r_l, = plt.plot(abscissas, val_rect_l, 'b', label = 'Rectangles left')
+    mp, = plt.plot(abscissas, val_midpoint, 'g', label = 'Midpoint')
+    tr, = plt.plot(abscissas, val_trapezoidal, 'y', label = 'Trapezoidal')
+    s, = plt.plot(abscissas, val_simpson, 'k', label = 'Simpson')
+    plt.title("Results of each method of integration")
+    plt.legend([r_r, r_l, mp, tr, s], ['Rectangles right', 'Rectangles left', 'Midpoint', 'Trapezoidal', 'Simpson'], loc = 0)
+    plt.xlabel('number of iterations')
     plt.show()
 
 
