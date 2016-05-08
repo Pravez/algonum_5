@@ -74,7 +74,7 @@ def make_function(f, x, y, n):
     xi = []
     yi = []
     h = (y - x)/float(n)
-    for i in range(n):
+    for i in range(n + 1):
         xi.append(x + i * h)
         yi.append(f(xi[i]))
     return xi, yi
@@ -108,19 +108,14 @@ def plot_methods(f, x, y, n_min, n_max):
     mp, = plt.plot(abscissas, val_midpoint, 'g', label='Midpoint')
     tr, = plt.plot(abscissas, val_trapezoidal, 'y', label='Trapezoidal')
     s, = plt.plot(abscissas, val_simpson, 'k', label='Simpson')
-    plt.title("Results of each method of integration")
     plt.legend([r_r, r_l, mp, tr, s], ['Rectangles right', 'Rectangles left', 'Midpoint', 'Trapezoidal', 'Simpson'], loc = 0)
     plt.xlabel('Number of iterations')
+    plt.xscale('log')
     plt.show()
 
 
 def f(x):
-    return x
+    return x**2
 
 
-plot_methods(f, 1, 10, 5, 100)
-
-# xi, yi = make_function(f, 0, 10, 5)
-# print(xi)
-# print(yi)
-# print(rect_r(xi, yi))
+plot_methods(f, 0, 10, 1, 1000)
