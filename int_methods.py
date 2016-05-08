@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from math import *
 
+
 def rect_r(xi, yi):
     S = 0
     n = len(xi)
@@ -38,21 +39,15 @@ def trapezoidal(xi, yi):
     return h*(m + S)
 
 
-def find_abscissa(xi, val):
-    for i in range(len(xi)):
-        if val < xi[i]:
-            return i - 1
-    return len(xi)
-
-
 def simpson(xi, yi):
     n = len(xi)
     h = (xi[n - 1] - xi[0])/float(n)
-    S = 0
-    for i in range(n - 1):
-        x2 = (2 * xi[i] + h)/2.
-        ind = find_abscissa(xi, x2)
-        S += (h/6.) * (yi[i] + 4 * yi[ind] + yi[i + 1])
+    S = yi[0] + yi[n - 1]
+    for i in range(0, n - 1, 2):
+        S += 2 * yi[i]
+    for i in range(0, n, 2):
+        S += 4 * yi[i]
+    S *= h/3.
     return S
 
 '''
@@ -108,19 +103,20 @@ def plot_methods(f, x, y, n_min, n_max):
         val_trapezoidal.append(trapezoidal(xi, yi))
         val_simpson.append(simpson(xi, yi))
 
-    r_r, = plt.plot(abscissas, val_rect_r, 'r', label = 'Rectangles right')
-    r_l, = plt.plot(abscissas, val_rect_l, 'b', label = 'Rectangles left')
-    mp, = plt.plot(abscissas, val_midpoint, 'g', label = 'Midpoint')
-    tr, = plt.plot(abscissas, val_trapezoidal, 'y', label = 'Trapezoidal')
-    s, = plt.plot(abscissas, val_simpson, 'k', label = 'Simpson')
+    r_r, = plt.plot(abscissas, val_rect_r, 'r', label='Rectangles right')
+    r_l, = plt.plot(abscissas, val_rect_l, 'b', label='Rectangles left')
+    mp, = plt.plot(abscissas, val_midpoint, 'g', label='Midpoint')
+    tr, = plt.plot(abscissas, val_trapezoidal, 'y', label='Trapezoidal')
+    s, = plt.plot(abscissas, val_simpson, 'k', label='Simpson')
     plt.title("Results of each method of integration")
     plt.legend([r_r, r_l, mp, tr, s], ['Rectangles right', 'Rectangles left', 'Midpoint', 'Trapezoidal', 'Simpson'], loc = 0)
-    plt.xlabel('number of iterations')
+    plt.xlabel('Number of iterations')
     plt.show()
 
 
 def f(x):
     return x
+
 
 plot_methods(f, 1, 10, 5, 100)
 
