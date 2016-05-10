@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from math import *
 
 
 def rect_r(xi, yi):
@@ -50,17 +49,6 @@ def simpson(xi, yi):
     S *= h/3.
     return S
 
-'''
-xi = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-yi = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-print(rect_r(xi, yi))
-print(rect_l(xi, yi))
-print(midpoint(xi, yi))
-print(trapezoidal(xi, yi))
-print(simpson(xi, yi))
-
-### La valeur exacte est 0.5 ###
-'''
 
 def make_function(f, x, y, n):
     '''
@@ -117,5 +105,3 @@ def plot_methods(f, x, y, n_min, n_max):
 def f(x):
     return x**2
 
-
-plot_methods(f, 0, 10, 1, 1000)
