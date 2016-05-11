@@ -59,7 +59,7 @@ def length2(xi, yi, method):
     return method(xi, integrand)
 
 
-xi = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-yi = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-print(deriv(xi, yi))
-print(length2(xi, yi, simpson))
+#xi = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+#yi = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+#print(deriv(xi, yi))
+#print(length2(xi, yi, simpson))

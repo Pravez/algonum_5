@@ -32,7 +32,8 @@ def flambdaLower(x,l):
 #Precision is 10^-6 by default, can be modified
 def length(l,x1,x2,eps=10**(-6)):
     length=0
-    
+
+
     while(x1<x2):
         length+= np.sqrt((eps)**2 + (f(x1+eps,l)-f(x1,l))**2)
         x1+=eps
@@ -79,7 +80,7 @@ def pressure_map(x1, x2, y1, y2, l, V=300):
         plt.plot(X, Yl, color=cl, linewidth=1, cmap=plt.get_cmap(hot)) 
     
 
-    print_airfoil(x1,x2,y1,y2)
+    #print_airfoil(x1,x2,y1,y2)
     plt.show()
     
 

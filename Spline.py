@@ -58,12 +58,12 @@ def get_func_splint(xa, ya, yp1 = 1e30, ypn = 1e30, max = 0.99e30):
 
     return (lambda x: splint(xa, ya, y2a, n, x))
 
-def compute_smthing_dos(xa, ya, npoints):
+def compute_smthing_dos(xa, ya, npoints, yp1 = 1e30, ypn = 1e30):
     n = len(xa)
 
     value = (xa[n-1] / n) / npoints
     total_points = npoints * n + 1
-    func = get_func_splint(xa, ya)
+    func = get_func_splint(xa, ya, yp1, ypn)
 
     final_points_y = []
     final_points_x = []
