@@ -111,6 +111,7 @@ def Create_pressure_map(file):
     func_extra = spline.get_func_splint(ex, ey)
 
 
+    #We define here pressures on the upper and lower part of the wing
     pressure_extra = create_pressures(hmax, func_extra, 0.01, 500)
     pressure_intra = create_pressures(hmin, func_intra, 0.03, 500)
 
@@ -133,9 +134,8 @@ def Create_pressure_map(file):
     length_extra = (compute_pressure_with_speed(pressure_extra))
     length_intra = (compute_pressure_with_speed(pressure_intra))
 
+    #now we create a pixel map for the colors
     result = create_colors(pressure_extra, pressure_intra, length_extra, length_intra)
-
-
 
     plt.imshow(result, cmap="hot")
     plt.show()
