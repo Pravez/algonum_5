@@ -40,6 +40,7 @@ def create_colors(pressures_extra, pressures_intra, pressures_length_extra, pres
 
     for i in range(0, len(pixels_extra)):
         for j in range(0, len(pixels_extra[i])):
+            #0.36 corresponds to max value (extra)
             value = locate_pixel(i/304.0, j/(300/0.36), pixels_extra[i][j], pressures_extra, 0.002)
             if value == 0:
                 pixels_extra[i][j] = 1.0
@@ -48,6 +49,7 @@ def create_colors(pressures_extra, pressures_intra, pressures_length_extra, pres
 
     for i in range(0, len(pixels_intra)):
         for j in range(0, len(pixels_intra[i])):
+            #0.23 corresponds to min value (intra)
             value = locate_pixel(i/303.0, -j/(50/0.23), pixels_intra[i][j], pressures_intra, 0.002)
             if value == 0:
                 pixels_intra[i][j] = 1.0
@@ -144,5 +146,5 @@ def Create_pressure_map(file):
 
 
 
-
+#Be careful when changing file, min and max values in calculations are made manually.
 Create_pressure_map("data/HOR20.DAT")
